@@ -1,0 +1,142 @@
+@import "00-plugins/bourbon/bourbon";
+@import "00-plugins/neat/neat";
+@import "01-bem/Alert/alert";
+
+// Variables
+$boxShadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+}
+  
+
+a {
+  text-decoration: none;
+}
+  
+
+// Global
+
+body {
+  background-color: shade(white, 10%);
+}
+  
+
+// Offer Panel
+.offer-panel {
+  @include margin(auto);
+  @include padding(64px null);
+  @include display(flex);
+  @include flex-direction(row);
+  flex-wrap: wrap;
+  width: 960px;
+  transition: padding 2s;
+}
+  
+  
+.offer-panel__product {
+  @include grid-column(4);
+  @include margin(null null 20px null);
+  width: 300px;
+  overflow: hidden;
+  height: 500px !important;
+  padding: 64px 16px;
+  position: relative;
+  @include box-sizing(border-box);
+}
+  
+
+.product-card_featured {
+  order: -1;
+}
+  
+  
+.product-card__image {
+  display: block;
+  @include size(auto 220px);
+  @include margin(null auto);
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+  
+
+.product-card {
+  font-family: $helvetica;
+  background-color: white;
+  transition: all 1s;
+  box-shadow: $boxShadow;
+  h2 {
+    height: 60px;
+    text-align: center;
+  }
+  &:hover {
+    box-shadow: 0px 12px 12px -2px rgba(0, 0, 0, 0.2), 0px 12px 16px 0px rgba(0, 0, 0, 0.14), 0px 4px 32px 0px rgba(0, 0, 0, 0.12);    
+  }  
+}
+
+.product-card__info {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+}
+  
+
+.price {
+  font-weight: bold;
+  @include margin(16px null);
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+  
+
+.price_compare {
+  text-decoration: line-through;
+  color: tint(#000, 80%);
+  font-size: 16px;
+}
+
+
+// BUTTON
+
+.button {
+  border: none;
+  display: block;
+  margin: 0 auto;
+  font-weight: bold;
+  padding: 12px;
+  @include margin(10px null);
+  box-shadow: $boxShadow;
+}
+
+
+.button_warning_yellow {
+  background-color: yellow;
+}
+
+
+// MEDIA
+
+@media screen and (max-width: 959px) {
+  .offer-panel__product {
+    @include grid-column(6)
+  }
+  
+}
+
+
+@media screen and (max-width: 639px) {
+  .offer-panel__product {
+    @include grid-column(12);
+  }
+}
+
+  

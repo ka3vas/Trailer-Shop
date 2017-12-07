@@ -1,0 +1,16 @@
+@import "../../00-plugins/bourbon/bourbon";
+
+.alert {
+  background: yellow;
+  @include margin(auto);
+  padding: 16px;
+  text-align: center;
+  font-family: $monospace;
+  transition: all 1.5s;
+  height: 48px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  opacity: 1;
+}
