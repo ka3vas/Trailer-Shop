@@ -1,0 +1,33 @@
+.product-card__preview {
+  position: relative;
+  height: 30rem;
+}
+
+.product-card__image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  @include size(auto);
+  @include user-select(none);
+}
+
+// Move to separate file later
+.center {
+  width: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center__header {
+  color: #FFF;
+  background-color: rgba(0, 0, 0, .4);
+  padding: 1.6rem .8rem;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: .1rem;
+}

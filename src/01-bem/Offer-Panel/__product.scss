@@ -1,0 +1,7 @@
+.offer-panel__product {
+  @include grid-column(3);
+  @include margin(null null 2rem null);
+  overflow: hidden;
+  height: 37rem !important;
+  @include box-sizing(border-box);
+}

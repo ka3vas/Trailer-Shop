@@ -1,5 +1,4 @@
-// require('./app.scss');
-
+// Import test function
 import {growl} from './01-bem/Alert/alert.js';
 
 console.log(growl());
@@ -14,7 +13,6 @@ function buildProductPage(singleProductData) {
   
   // Grab .offer-panel
   let offerPanel = document.querySelector('.offer-panel');
-  console.log(singleProductData);
   let productTemplate = singleProductData.body_html;
 
   offerPanel.innerHTML = productTemplate;
@@ -58,7 +56,10 @@ function buildProductCard(singleProductData) {
       }
     }
 
-      element += `<h2>${singleProductData.title}</h2>
+      element += `<div class="center">
+                    <h2 class="center__header">${singleProductData.title}</h2>
+                  </div>
+
                   </div>`
   // end: <div class="product-card__preview">
 
@@ -110,7 +111,7 @@ getProductsList()
           .map(product => buildProductCard(product) );
   });
 
-document.querySelector('.alert__button_remove_right').addEventListener('click', (e) => {
+document.querySelector('.alert__button_right_remove').addEventListener('click', (e) => {
   // Should move it to separate function
   // Fade out the alert
   const removeThis = e.target.parentNode;

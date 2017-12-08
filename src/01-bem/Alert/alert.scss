@@ -1,4 +1,3 @@
-@import "../../00-plugins/bourbon/bourbon";
 @import "__button.scss";
 @import "__text.scss";
 
@@ -8,9 +7,10 @@ $info: tint(blue, 20%);
 $success: tint(green, 20%);
 
 .alert {
-  position: absolute;
-  top: 0;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
   transition: all 1.5s;
 }
 
