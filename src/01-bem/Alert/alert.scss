@@ -1,16 +1,28 @@
 @import "../../00-plugins/bourbon/bourbon";
+@import "__button.scss";
+@import "__text.scss";
+
+$danger: tint(red, 20%);
+$warning: tint(yellow, 20%);
+$info: tint(blue, 20%);
+$success: tint(green, 20%);
 
 .alert {
-  background: yellow;
-  @include margin(auto);
-  padding: 16px;
-  text-align: center;
-  font-family: $monospace;
-  transition: all 1.5s;
-  height: 48px;
   position: absolute;
   top: 0;
   width: 100%;
-  box-sizing: border-box;
-  opacity: 1;
+  transition: all 1.5s;
+}
+
+.alert_danger {
+  background-color: $danger;
+}
+.alert_warning {
+  background-color: $warning;
+}
+.alert_info {
+  background-color: $info;
+}
+.alert_success {
+  background-color: $success;
 }

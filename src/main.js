@@ -1,4 +1,8 @@
-require('./app.scss');
+// require('./app.scss');
+
+import {growl} from './01-bem/Alert/alert.js';
+
+console.log(growl());
 
 // Save promise???
 let promiseProductList = []; 
@@ -33,49 +37,57 @@ function getProductsList() {
 // This could probably live in another file (?)
 function buildProductCard(singleProductData) {
   
-  // Create Block .product-card
+  // Create .product-card Block
   let productCard = document.createElement('div');
   productCard.className = "offer-panel__product product-card";
 
-  // Check if featured, set class for Block
-  if (singleProductData.variants[0].featured_image !== null) {
-    productCard.className += " product-card_featured";
-  } 
+  //////////////////////////////////////
+  
+  let element = `<div class="product-card__preview">`;
 
-  //Build .product-card Block
-  let element = ``;
-
-    // Check if product have any image for it, if yes add it
-    if (singleProductData.images.length !== 0) {
-      element += `<img class="product-card__image" src="${singleProductData.images[0].src}">`
+    // Check if product is featured
+    if (singleProductData.variants[0].featured_image !== null) {
+      
+      productCard.className += " product-card_featured";
+      element += `<img class="product-card__image" src="${singleProductData.variants[0].featured_image.src}">`
+    } else {
+      
+      // If not add normal images (if there is any)
+      if (singleProductData.images.length !== 0) {
+        element += `<img class="product-card__image" src="${singleProductData.images[0].src}">`
+      }
     }
 
-      element +=  `
-                  <h2>${singleProductData.title}</h2>
-                  <div class="product-card__info">`
+      element += `<h2>${singleProductData.title}</h2>
+                  </div>`
+  // end: <div class="product-card__preview">
 
-                    // Check for compare
-                    // Remove duplicate code!!! Only need to add one span or ignore it
-                    if (singleProductData.variants[0].compare_at_price !== null) {
-                      element += `<div class="price">
-                                    Price: <span class="price_compare">C$${singleProductData.variants[0].compare_at_price}</span>
-                                    <span>C$${singleProductData.variants[0].price}</span>
-                                  </div> `
-                    } else {
-                      element += `<div class="price">
-                                    Price: <span>C$${singleProductData.variants[0].price}</span>
-                                  </div>`
-                    }
-                    
-                    // If featured highlight button
-                    if (singleProductData.variants[0].featured_image !== null) {
-                      element += `<button class="button button_warning_yellow">More Info</button>`
-                    } else {
-                      element += `<button class="button">More Info</button>`
-                    }
+      element +=  `<div class="product-card__info">`
+
+      // Check for compare
+      // Remove duplicate code!!! Only need to add one span or ignore it
+      if (singleProductData.variants[0].compare_at_price !== null) {
+        element += `<div class="price">
+                      Price: <span class="price_compare">C$${singleProductData.variants[0].compare_at_price}</span>
+                      <span>C$${singleProductData.variants[0].price}</span>
+                    </div> `
+      } else {
+        element += `<div class="price">
+                      Price: <span>C$${singleProductData.variants[0].price}</span>
+                    </div>`
+      }
+      
+      // If featured highlight button
+      if (singleProductData.variants[0].featured_image !== null) {
+        element += `<button class="button button_warning_yellow">More Info</button>`
+      } else {
+        element += `<button class="button">More Info</button>`
+      }
                     
       element +=`</div>`;
-  
+      // end: <div class="product-card__info">
+
+  //////////////////////////////////////
   productCard.innerHTML = element;
   // Add event to the button, that will build product 'page'
   productCard.querySelector('.button').addEventListener('click', () => {
@@ -98,18 +110,19 @@ getProductsList()
           .map(product => buildProductCard(product) );
   });
 
-document.querySelector('.alert__button_close').addEventListener('click', (e) => {
+document.querySelector('.alert__button_remove_right').addEventListener('click', (e) => {
   // Should move it to separate function
   // Fade out the alert
-  e.target.parentNode.style.opacity = '0';
-  console.log(e.target.parentNode);
-  // Remove it
+  const removeThis = e.target.parentNode;
+  removeThis.style.opacity = '0';
+  
+  // Remove it from document
   setTimeout(() => {
-    const removeThis = e.target.parentNode;
     removeThis.parentNode.removeChild(removeThis);
   }, 2000)
 
+  // when alert gets added its height should be added to the padding-top of the first element so it wont hide it
   // ninja code at work (i know)
   const test = document.querySelector('h1');
-  test.style.paddingTop = "16px";
+  test.style.paddingTop = "64px";
 });

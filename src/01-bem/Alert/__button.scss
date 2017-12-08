@@ -1,0 +1,14 @@
+.alert__button {
+  display: block;
+  position: absolute;
+  top: 0;
+}
+
+.alert__button_remove_right {
+  font-size: 1.5rem;
+  height: 2rem;
+  padding: .8rem 2rem 0 0;
+  font-weight: bold;
+  right: 0;
+  cursor: pointer;
+}

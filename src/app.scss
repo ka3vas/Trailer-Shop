@@ -1,6 +1,15 @@
+// PLUGINS
 @import "00-plugins/bourbon/bourbon";
 @import "00-plugins/neat/neat";
+
+// FONTS
+// Used in: .alert__text
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+
+// MODULES
 @import "01-bem/Alert/alert";
+@import "01-bem/Offer-Panel/offer-panel";
+
 
 // Variables
 $boxShadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
@@ -10,49 +19,27 @@ $boxShadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0
   margin: 0;
   padding: 0;
 }
-  
 
 a {
   text-decoration: none;
 }
   
-
 // Global
+html {
+  font-size: 10px;
+}
 
 body {
   background-color: shade(white, 10%);
 }
-  
 
-// Offer Panel
-.offer-panel {
-  @include margin(auto);
-  @include padding(64px null);
-  @include display(flex);
-  @include flex-direction(row);
-  flex-wrap: wrap;
-  width: 960px;
-  transition: padding 2s;
-}
-  
-  
-.offer-panel__product {
-  @include grid-column(4);
-  @include margin(null null 20px null);
-  width: 300px;
-  overflow: hidden;
-  height: 500px !important;
-  padding: 64px 16px;
-  position: relative;
-  @include box-sizing(border-box);
-}
-  
 
+  
+// product card
 .product-card_featured {
   order: -1;
 }
-  
-  
+
 .product-card__image {
   display: block;
   @include size(auto 220px);
@@ -65,7 +52,6 @@ body {
   -ms-user-select: none;
 }
   
-
 .product-card {
   font-family: $helvetica;
   background-color: white;
@@ -96,7 +82,6 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
-  
 
 .price_compare {
   text-decoration: line-through;
@@ -106,7 +91,6 @@ body {
 
 
 // BUTTON
-
 .button {
   border: none;
   display: block;
@@ -125,15 +109,18 @@ body {
 
 // MEDIA
 
-@media screen and (max-width: 959px) {
+// TABLET
+@media screen and (max-width: 840px) {
+  .offer-panel {
+    max-width: 640px;
+  }
   .offer-panel__product {
     @include grid-column(6)
   }
-  
 }
 
-
-@media screen and (max-width: 639px) {
+// MOBILE
+@media screen and (max-width: 400px) {
   .offer-panel__product {
     @include grid-column(12);
   }

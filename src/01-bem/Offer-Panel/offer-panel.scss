@@ -1,0 +1,22 @@
+// Offer Panel
+.offer-panel {
+  @include margin(auto);
+  @include padding(64px null);
+  @include display(flex);
+  @include flex-direction(row);
+  flex-wrap: wrap;
+  max-width: 960px;
+  transition: padding 2s;
+}
+  
+  
+.offer-panel__product {
+  @include grid-column(4);
+  @include margin(null null 20px null);
+  width: 300px;
+  overflow: hidden;
+  height: 500px !important;
+  padding: 64px 16px;
+  position: relative;
+  @include box-sizing(border-box);
+}
