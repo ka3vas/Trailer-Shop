@@ -1,10 +1,5 @@
 // Import test function
-import {growl} from './01-bem/Alert/alert.js';
-
-console.log(growl());
-
-// Save promise???
-let promiseProductList = []; 
+import {customAlert} from './01-bem/Alert/alert.js';
 
 // FOCUS ON PRODUCT /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,7 +31,7 @@ function getProductsList() {
 function buildProductCard(singleProductData) {
   
   // Create .product-card Block
-  let productCard = document.createElement('div');
+  const productCard = document.createElement('div');
   productCard.className = "offer-panel__product product-card";
 
   //////////////////////////////////////
@@ -104,26 +99,10 @@ getProductsList()
   .then(productsStream => productsStream.json())
   .then(productsList => {
 
-        // TEST VARIABLE
-        promiseProductList = [...productsList.products];
-        
-        productsList.products
-          .map(product => buildProductCard(product) );
-  });
-
-document.querySelector('.alert__button_right_remove').addEventListener('click', (e) => {
-  // Should move it to separate function
-  // Fade out the alert
-  const removeThis = e.target.parentNode;
-  removeThis.style.opacity = '0';
-  
-  // Remove it from document
-  setTimeout(() => {
-    removeThis.parentNode.removeChild(removeThis);
-  }, 2000)
-
-  // when alert gets added its height should be added to the padding-top of the first element so it wont hide it
-  // ninja code at work (i know)
-  const test = document.querySelector('h1');
-  test.style.paddingTop = "64px";
+    productsList.products
+      .map(product => buildProductCard(product));
 });
+
+
+let customAlertMessage = "Just an ordinary gas cloud. But watch out, because that's no ordinary gas cloud! -Professor Putricide";
+customAlert('alert_warning', customAlertMessage);
