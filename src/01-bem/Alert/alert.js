@@ -1,34 +1,38 @@
-export function customAlert (alertTheme, alertMessage) {
-  // build up the alert
-  
+export function customAlert (customAlertSettings) {
   
   const customAlertBody = document.createElement('div');
-  customAlertBody.className = `alert ${alertTheme}`;
+  customAlertBody.className = `alert alert_hide alert_${customAlertSettings.style}`;
 
   const customAlertInnerBody = `
-                                <p class="alert__text ">${alertMessage}</p>
+                                <p class="alert__text ">${customAlertSettings.message}</p>
                                 <span class="alert__button alert__button_right_remove">&#10006</span>
                               `;
 
   customAlertBody.innerHTML = customAlertInnerBody;
   
-  // Add customAlert
-  document.body.insertAdjacentElement('afterbegin', customAlertBody);
+  // Add customAlert to the document
+  document.body.insertAdjacentElement('beforeend', customAlertBody);
   
+  const customAlertHeight = document.querySelector('.alert').offsetHeight;
+  
+  setTimeout(() => {
+    document.querySelector('body').style.paddingTop = `${customAlertHeight}px`;
+    document.querySelector('.alert').classList.remove('alert_hide');
+  }, 2000);
 
+  // Close button event
   document.querySelector('.alert__button_right_remove').addEventListener('click', function(e) {
+    
     // Fade out the alert
     const removeThis = e.target.parentNode;
     removeThis.style.opacity = '0';
 
-    // Remove it from document
+    // Remove it
     setTimeout(() => {
       removeThis.parentNode.removeChild(removeThis);
-    }, 2000);
-  
-    // when alert gets added its height should be added to the padding-top of the first element so it wont hide it
-    // ninja code at work (i know)
-    const test = document.querySelector('h1');
-    test.style.paddingTop = "64px";
+    }, 1500);
+    
+    // Remove the padding that was added earlier
+    document.querySelector('body').style.paddingTop = 0;
   });
 }

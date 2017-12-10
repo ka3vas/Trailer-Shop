@@ -5,6 +5,7 @@
   @include padding(0 null 64px);
   @include display(flex);
   @include flex-direction(row);
+  @include clearfix;
   flex-wrap: wrap;
   max-width: 80%;
   transition: padding 2s;

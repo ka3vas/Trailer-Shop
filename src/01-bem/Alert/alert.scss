@@ -14,6 +14,10 @@ $success: tint(green, 20%);
   transition: all 1.5s;
 }
 
+.alert_hide {
+  @include transform(translateY(-100%));
+}
+
 .alert_danger {
   background-color: $danger;
 }

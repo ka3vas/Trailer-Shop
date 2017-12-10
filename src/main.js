@@ -104,5 +104,10 @@ getProductsList()
 });
 
 
-let customAlertMessage = "Just an ordinary gas cloud. But watch out, because that's no ordinary gas cloud! -Professor Putricide";
-customAlert('alert_warning', customAlertMessage);
+// style-options: danger, warning, info, success
+const customAlertSettings = {
+  message: "Just an ordinary gas cloud. But watch out, because that's no ordinary gas cloud! -Professor Putricide",
+  style: "warning",
+};
+
+customAlert(customAlertSettings);
